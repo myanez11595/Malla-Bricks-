@@ -1,6 +1,9 @@
 # Malla-Bricks-
 Este repositorio promueve el uso de información geográfica. Proporcionamos una malla espacial referente a marcos geoestadísticos, permitiendo generar mallas a medida. Fomentamos la transparencia, colaboración y uso efectivo de datos geográficos. ¡Contribuye y comparte tus hallazgos!
 
+![DALL·E 2023-09-28 16 16 54 - un mapa del mundo con una malla de cuadrados con valores estadisticos que se encuentre sobre el mapa del mundo 2](https://github.com/myanez11595/Malla-Bricks-/assets/58635767/8195f99f-e0de-45d8-be28-18b7a84cedc6)
+
+
 library(sf)
 library(raster)
 
