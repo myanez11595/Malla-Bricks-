@@ -60,7 +60,7 @@ while (num_y>0) {
 ### Editar en caso de generar una malla para la zona insular 
 malla$COD <- paste0("C+",codigo_x, codigo_y)
 
-# Guardar la capa 
-# cambiar la direccion de salida
+### Guardar la capa 
+### cambiar la direccion de salida
 st_write(malla,"direccion_de_salida/Malla_salida.shp")
 
