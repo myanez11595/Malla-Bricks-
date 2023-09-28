@@ -3,7 +3,9 @@ Este repositorio promueve el uso de información geográfica. Proporcionamos una
 
 ![imagen](https://github.com/myanez11595/Malla-Bricks-/assets/58635767/6fd27ce2-6c0b-48a2-b84f-10791f74a97e)
 
+### Cargar Librerias
 library(sf)
+
 library(raster)
 
 ### Cargar la capa poligonal
