@@ -1,7 +1,8 @@
 # Malla-Bricks-
 Este script de R genera una cuadrícula o malla regular sobre un área geográfica definida por una capa poligonal. Cada celda de la malla tiene un tamaño definido (en este caso, 1 km x 1 km) y un código único basado en su posición. ¡Contribuye y comparte tus hallazgos!
 
-![imagen](https://github.com/myanez11595/Malla-Bricks-/assets/58635767/6fd27ce2-6c0b-48a2-b84f-10791f74a97e)
+![Captura](https://github.com/myanez11595/Malla-Bricks-/assets/58635767/e7c41e4d-761c-41f1-9d15-e810157457ae)
+
 
 La utilidad de esta malla radica en su capacidad para dividir un área geográfica en unidades espaciales uniformes. Esto es útil para una variedad de aplicaciones en análisis de datos, ciencia de datos y planificación, incluyendo:
 
