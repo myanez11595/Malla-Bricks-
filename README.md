@@ -1,70 +1,16 @@
 # Malla-Bricks-
-Este repositorio promueve el uso de información geográfica. Proporcionamos una malla espacial referente a marcos geoestadísticos, permitiendo generar mallas a medida. Fomentamos la transparencia, colaboración y uso efectivo de datos geográficos. ¡Contribuye y comparte tus hallazgos!
+Este script de R genera una cuadrícula o malla regular sobre un área geográfica definida por una capa poligonal. Cada celda de la malla tiene un tamaño definido (en este caso, 1 km x 1 km) y un código único basado en su posición. ¡Contribuye y comparte tus hallazgos!
 
 ![imagen](https://github.com/myanez11595/Malla-Bricks-/assets/58635767/6fd27ce2-6c0b-48a2-b84f-10791f74a97e)
 
-### Cargar Librerias
-library(sf)
+La utilidad de esta malla radica en su capacidad para dividir un área geográfica en unidades espaciales uniformes. Esto es útil para una variedad de aplicaciones en análisis de datos, ciencia de datos y planificación, incluyendo:
 
-library(raster)
+Análisis Espacial: La malla puede ser utilizada para realizar análisis espaciales, como la interpolación de datos, el análisis de hotspots o la identificación de patrones espaciales.
 
-### Cargar la capa poligonal
-capa_poligono <- st_read("tu_direccion/poligono.shp")  # Reemplaza con la ruta de tu archivo
+**1. Visualización de Datos:** Las celdas de la malla pueden ser coloreadas o sombreadas para representar diferentes valores de datos, facilitando la visualización y comprensión de los patrones espaciales en los datos.
 
-### Obtener los límites de la capa poligonal
-limites <- st_bbox(capa_poligono)
+**2. Planificación y Gestión:** En el campo de la planificación urbana y ambiental, las mallas se utilizan a menudo para modelar y gestionar fenómenos espaciales, como el uso del suelo, la distribución de la población o el impacto ambiental.
 
-### Definir la resolución de la malla
-resolucion <- 1000  # 1 km = 1000 m
+**3. Machine Learning Espacial:** En ciencia de datos, las mallas pueden ser utilizadas como entrada para algoritmos de machine learning que incorporan información espacial.
 
-### Crear una cuadrícula regular con la resolución deseada
-malla <- raster::rasterToPolygons(raster::raster(extent(limites), resolution = resolucion))
-malla <- st_as_sf(malla)
-
-### Agregamos el sistema de referencia a la malla
-malla <- st_set_crs(malla, 32717)
-centroides <- st_centroid(malla)
-coords <- st_coordinates(centroides) %>% as.data.frame()
-### Crear las columnas separadas de latitud y longitud
-malla$X <- coords[, "Y"]
-malla$Y <- coords[, "X"]
-num_letras <- length(unique(malla$Y)) 
-
-### Función para convertir un número en letras según el sistema de numeración de Excel
-num_to_letras <- function(num) {
-  div <- num %/% 26
-  mod <- num %% 26
-  if (mod == 0) {
-    mod <- 26
-    div <- div - 1
-  }
-  if (div > 0) {
-    return(paste0(num_to_letras(div), LETTERS[mod]))
-  } else {
-    return(LETTERS[mod])
-  }
-}
-
-### Crear el vector de letras siguiendo el sistema de numeración de Excel
-codigo_x <- sapply(1:num_letras, num_to_letras)
-codigo_x <- rep(codigo_x, times = length(unique(malla$X)))
-num_y=length(unique(malla$X))
-rm(codigo_y,codigo_y1)
-while (num_y>0) {
-  codigo_y1 <- rep(num_y,length(unique(malla$Y)))
-  num_y=num_y-1
-  if(exists("codigo_y")){
-    codigo_y=c(codigo_y,codigo_y1)
-  }else{
-    codigo_y=codigo_y1
-  }
-}
-
-### Agregar los códigos únicos a la malla
-### Editar en caso de generar una malla para la zona insular 
-malla$COD <- paste0("C+",codigo_x, codigo_y)
-
-### Guardar la capa 
-### cambiar la direccion de salida
-st_write(malla,"direccion_de_salida/Malla_salida.shp")
-
+Por lo tanto, este script es una herramienta valiosa para cualquier persona que trabaje con datos geoespaciales. Sin embargo, es importante tener en cuenta que la elección del tamaño de la celda (resolución de la malla) puede tener un impacto significativo en los resultados del análisis y debe ser seleccionada cuidadosamente en función del problema específico que se esté abordando.
